@@ -1,0 +1,44 @@
+version: "3.9"
+networks:
+  roboshop:
+    driver: bridge
+services:
+  web:
+    image: techworldwithsiva/web:v1
+    container_name: web  
+    ports:
+      - "80:80"
+    depends_on:
+      - catalogue
+      - mongodb
+  mongodb:
+    image: techworldwithsiva/mongo:v1
+    container_name: mongodb
+  catalogue:
+    image: techworldwithsiva/catalogue:v1
+    container_name: catalogue
+    depends_on:
+      - mongodb
+  redis:
+    image: redis:v1
+  user:
+    image: techworldwithsiva/user:v1
+    container_name: user 
+    depends_on:
+      - mongodb
+      - redis
+  cart:
+    image: techworldwithsiva/cart:v1
+    container_name: cart
+    depends_on:
+      - redis
+      - catalogue
+  mysql:
+    image: techworldwithsiva/mysql:v1
+    container_name: mysql
+  shipping:
+    image: techworldwithsiva/shipping:v1
+    container_name: shipping
+    depends_on:
+      - mysql  
+          
