@@ -12,7 +12,7 @@ services:
       - catalogue
       - mongodb
   mongodb:
-    image: techworldwithsiva/mongo:v1
+    image: techworldwithsiva/mongodb:v1
     container_name: mongodb
   catalogue:
     image: techworldwithsiva/catalogue:v1
